@@ -1,0 +1,4 @@
+@function pxS($radius) {
+  @return calc($radius / 1.5) * 1px;
+}
+
