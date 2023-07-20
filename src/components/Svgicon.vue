@@ -1,5 +1,5 @@
 <template>
-  <svg class="icon" aria-hidden="true" :style="props.iconStyle" @click="props.iconEvent">
+  <svg class="icon" aria-hidden="true" :style="props.iconStyle" >
     <use :xlink:href="'#' + props.iconClass"></use>
   </svg>
 </template>
@@ -10,6 +10,8 @@ const props = defineProps<{
   iconStyle?: string;
   iconEvent?:string
 }>();
+
+
 </script>
 
 <style scoped lang="scss">

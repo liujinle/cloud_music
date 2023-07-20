@@ -184,6 +184,7 @@
                     :iconClass="item.iconName"
                     :iconStyle="data.color"
                     :iconEvent="item.iconEvent"
+                    @click="settingClick(item.iconEvent)"
                   />
                 </div>
                 <template v-if="i === 2">
@@ -199,8 +200,7 @@
 </template>
 
 <script setup lang="ts">
-
-import {useThemeStore} from '@/store/useTheme'
+import { useThemeStore } from "@/store/useTheme";
 // import { window } from "@tauri-apps/api";
 // 问题：代码片段中使用了reactive，该代码片段可能是Vue 3的组件代码，后缀类型应该是.vue。但是该代码片段中没有导入Vue或者defineComponent等组件相关的代码，可能还需要在其他文件中导入相关代码才能正常运行。
 type Data = {
@@ -213,8 +213,7 @@ type IconSetting = {
   iconName: string;
   iconEvent: string;
 };
-const theme = useThemeStore()
-
+const theme = useThemeStore();
 
 const data = <Data>reactive({
   bgColor: "#ec4141",
@@ -222,7 +221,7 @@ const data = <Data>reactive({
   settings: [
     {
       iconName: "icon-pifuzhuti-xianxing",
-      iconEvent: "changeTheme",
+      iconEvent: "openTheme",
     },
     {
       iconName: "icon-shezhi",
@@ -264,8 +263,29 @@ function search_focus() {
 function search_blur() {
   search_val.value === "" ? (isFocus.value = true) : (isFocus.value = false);
 }
-
-
+function settingClick(iconEvent: string) {
+  if (iconEvent === "openTheme") {
+    theme.changeThemeOpen();
+  }
+  if (iconEvent === "showSetting") {
+    // theme.showSetting();
+  }
+  if (iconEvent === "showMsg") {
+    // theme.showMsg();
+  }
+  if (iconEvent === "windowmini") {
+    // theme.windowmini();
+  }
+  if (iconEvent === "windowminimax") {
+    // theme.windowminimax();
+  }
+  if (iconEvent === "windowmax") {
+    // theme.windowmax();
+  }
+  if (iconEvent === "windowclose") {
+    // theme.windowclose();
+  }
+}
 </script>
 
 <style scoped lang="scss">

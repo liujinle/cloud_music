@@ -10,7 +10,7 @@
               >主题</span
             >
           </template>
-          <n-grid x-gap="12" y-gap="8" :cols="3">
+          <n-grid x-gap="2" y-gap="2" :cols="3">
             <template v-for="(item, i) in data.colors" :key="item.colorName">
               <n-gi>
                 <div
@@ -120,6 +120,8 @@ function changeTheme(index: number) {
 }
 
 .bg {
+  width: 350px;
+  height: 278px;
   .bg_tab {
     user-select: none;
     color: #c3c3c3;
