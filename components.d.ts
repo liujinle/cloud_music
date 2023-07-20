@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     CustomizationPage: typeof import('./src/components/CustomizationPage.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    NCard: typeof import('naive-ui')['NCard']
     NDivider: typeof import('naive-ui')['NDivider']
     NGi: typeof import('naive-ui')['NGi']
     NGrid: typeof import('naive-ui')['NGrid']
@@ -16,9 +17,17 @@ declare module 'vue' {
     NImage: typeof import('naive-ui')['NImage']
     NImg: typeof import('naive-ui')['NImg']
     NInput: typeof import('naive-ui')['NInput']
+    NLayout: typeof import('naive-ui')['NLayout']
+    NLayoutContent: typeof import('naive-ui')['NLayoutContent']
+    NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
+    NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
+    NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NSpace: typeof import('naive-ui')['NSpace']
+    NTabPane: typeof import('naive-ui')['NTabPane']
+    NTabs: typeof import('naive-ui')['NTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Svgicon: typeof import('./src/components/Svgicon.vue')['default']
+    ThemeBox: typeof import('./src/components/ThemeBox.vue')['default']
   }
 }

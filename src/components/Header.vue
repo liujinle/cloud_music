@@ -1,5 +1,10 @@
 <template>
-  <div class="header">
+  <div
+    class="header"
+    :style="{
+      backgroundColor: theme.themeColor,
+    }"
+  >
     <div class="header_left">
       <div class="title">
         <h1>
@@ -138,7 +143,10 @@
 
           <div class="search_vo">
             <div class="search_vo_con">
-              <Svgicon iconClass="icon-yuyin" iconStyle="color:#ffdee8;width:1.5em;height:1.5em"></Svgicon>
+              <Svgicon
+                iconClass="icon-yuyin"
+                iconStyle="color:#ffdee8;width:1.5em;height:1.5em"
+              ></Svgicon>
             </div>
           </div>
         </div>
@@ -171,17 +179,18 @@
           <div class="setting_change">
             <n-space justify="start" :size="12">
               <template v-for="(item, i) in data.settings" :key="item">
-                <div >
-                <Svgicon :iconClass="item" :iconStyle="data.color" />
-                
-              </div>
-              <template v-if="i === 2">
+                <div>
+                  <Svgicon
+                    :iconClass="item.iconName"
+                    :iconStyle="data.color"
+                    :iconEvent="item.iconEvent"
+                  />
+                </div>
+                <template v-if="i === 2">
                   <n-divider vertical />
                 </template>
               </template>
-              
             </n-space>
-            
           </div>
         </div>
       </div>
@@ -190,20 +199,55 @@
 </template>
 
 <script setup lang="ts">
+
+import {useThemeStore} from '@/store/useTheme'
+// import { window } from "@tauri-apps/api";
+// 问题：代码片段中使用了reactive，该代码片段可能是Vue 3的组件代码，后缀类型应该是.vue。但是该代码片段中没有导入Vue或者defineComponent等组件相关的代码，可能还需要在其他文件中导入相关代码才能正常运行。
 type Data = {
+  bgColor: string;
   color: string;
-  settings: string[];
+  settings: IconSetting[];
 };
+
+type IconSetting = {
+  iconName: string;
+  iconEvent: string;
+};
+const theme = useThemeStore()
+
+
 const data = <Data>reactive({
+  bgColor: "#ec4141",
   color: "color:#ffdee8;width:1.3em;height:1.3em",
   settings: [
-    "icon-pifuzhuti-xianxing",
-    "icon-shezhi",
-    "icon-youxiang",
-    "icon-suoxiao",
-    "icon-suoxiao1",
-    "icon-zuidahua",
-    "icon-guanbi",
+    {
+      iconName: "icon-pifuzhuti-xianxing",
+      iconEvent: "changeTheme",
+    },
+    {
+      iconName: "icon-shezhi",
+      iconEvent: "showSetting",
+    },
+    {
+      iconName: "icon-youxiang",
+      iconEvent: "showMsg",
+    },
+    {
+      iconName: "icon-suoxiao",
+      iconEvent: "windowmini",
+    },
+    {
+      iconName: "suoxiao1",
+      iconEvent: "windowminimax",
+    },
+    {
+      iconName: "icon-zuidahua",
+      iconEvent: "windowmax",
+    },
+    {
+      iconName: "icon-guanbi",
+      iconEvent: "windowclose",
+    },
   ],
 });
 const colorChange = ref({
@@ -220,6 +264,8 @@ function search_focus() {
 function search_blur() {
   search_val.value === "" ? (isFocus.value = true) : (isFocus.value = false);
 }
+
+
 </script>
 
 <style scoped lang="scss">
@@ -227,7 +273,6 @@ $white: #f8d8d8;
 .header {
   width: 100%;
   height: pxS(80);
-  background-color: red;
 
   display: flex;
   justify-content: space-between;
@@ -285,11 +330,11 @@ $white: #f8d8d8;
         align-items: center;
         .search_box_container {
           padding: 6px 6px;
-          background-color: #e33e3e;
           display: flex;
           justify-content: space-between;
           align-items: center;
           border-radius: 20px;
+          background-color: rgba(0, 0, 0, 0.1);
           .search_box_icon {
             margin-right: 8px;
           }
