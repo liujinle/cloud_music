@@ -2,18 +2,20 @@
   <div class="list">
     <div class="list_view">
       <template v-for="(item, i) in data.lists">
-        <div @click="changeView(i)">
-          <span :class="item.listView ? 'active' : ''">{{
-            item.listName
-          }}</span>
-        </div>
+        <RouterLink :to="item.path">
+          <div @click="changeView(i)">
+            <span :class="item.listView ? 'active' : ''">
+              {{ item.listName }}
+            </span>
+          </div>
+        </RouterLink>
       </template>
     </div>
     <div class="list_music">
       <div class="list_mymusic">
         <div class="title">我的音乐</div>
         <div class="mymusic_box">
-          <template v-for="(item) in data.mymusic" :key="item.iconname">
+          <template v-for="item in data.mymusic" :key="item.iconname">
             <div>
               <Svgicon :icon-class="item.iconClass"></Svgicon>
               {{ item.iconName }}
@@ -36,6 +38,7 @@ type Data = {
 type Lists = {
   listName: string;
   listView: boolean;
+  path: string;
 };
 type MymusicBox = {
   iconClass: string;
@@ -61,26 +64,32 @@ const data = <Data>reactive({
     {
       listName: "发现音乐",
       listView: true,
+      path: "/",
     },
     {
       listName: "播客",
       listView: false,
+      path: "/podcast",
     },
     {
       listName: "视频",
       listView: false,
+      path: "/video",
     },
     {
       listName: "关注",
       listView: false,
+      path: "/follow",
     },
     {
       listName: "直播",
       listView: false,
+      path: "/live",
     },
     {
       listName: "私人漫游",
       listView: false,
+      path: "/privatelive",
     },
   ],
 });
@@ -98,7 +107,7 @@ function changeView(index: number) {
   font-weight: 600;
 }
 .list {
-    border-right:1px solid #e0e0e0 ;
+  border-right: 1px solid #e0e0e0;
   cursor: pointer;
   padding: 0 2px 0 20px;
   display: flex;
@@ -129,7 +138,7 @@ function changeView(index: number) {
 
     .mymusic_box {
       font-size: 14px;
-      div{
+      div {
         padding: 10px 2px 10px 0;
       }
     }

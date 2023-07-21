@@ -1,5 +1,5 @@
 <template>
-  <div>发现音乐</div>
+  <div>这是关注</div>
 </template>
 
 <script setup lang="ts"></script>

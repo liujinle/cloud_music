@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
-import index from './views/index.vue';
+import layout from "@/layout/index.vue";
 </script>
 
 <template>
   <div>
-    <index></index>
+    <layout />
   </div>
 </template>
 
