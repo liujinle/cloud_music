@@ -5,10 +5,18 @@ import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
 import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 import path from "path";
-import Pages from "vite-plugin-pages";
-
+import VueRouter from "unplugin-vue-router/vite";
+import { VueRouterAutoImports } from "unplugin-vue-router";
 export default defineConfig(async () => ({
   plugins: [
+    VueRouter({
+      routesFolder: "src/views",
+      extensions: [".vue"],
+      exclude: [],
+      dts: "./typed-router.d.ts",
+      routeBlockLang: "json5",
+      importMode: "async",
+    }),
     vue(),
     components({
       resolvers: [NaiveUiResolver()],
@@ -24,20 +32,8 @@ export default defineConfig(async () => ({
             "useLoadingBar",
           ],
         },
+        VueRouterAutoImports,
       ],
-    }),
-
-    Pages({
-      dirs: [
-        {
-          dir: "src/views",
-          baseRoute: "/",
-        },
-      ],
-      importMode: "async",
-      extendRoute(route) {
-        if (route.path === "/") return { ...route, redireect: "a" };
-      },
     }),
   ],
   css: {

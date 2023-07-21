@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import Layout from '@/layout/Layout.vue';
 
+import index from './views/index.vue';
 </script>
 
 <template>
   <div>
-    <!-- <Header></Header> -->
-
-    <Layout/>
+    <index></index>
   </div>
 </template>
 

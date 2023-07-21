@@ -11,6 +11,7 @@ declare module 'vue' {
     Header: typeof import('./src/components/Header.vue')['default']
     NCard: typeof import('naive-ui')['NCard']
     NDivider: typeof import('naive-ui')['NDivider']
+    NDropdown: typeof import('naive-ui')['NDropdown']
     NGi: typeof import('naive-ui')['NGi']
     NGrid: typeof import('naive-ui')['NGrid']
     NIcon: typeof import('naive-ui')['NIcon']
@@ -27,6 +28,7 @@ declare module 'vue' {
     NTabs: typeof import('naive-ui')['NTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sider: typeof import('./src/components/Sider.vue')['default']
     Svgicon: typeof import('./src/components/Svgicon.vue')['default']
     ThemeBox: typeof import('./src/components/ThemeBox.vue')['default']
   }

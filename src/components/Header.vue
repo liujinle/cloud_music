@@ -1,6 +1,7 @@
 <template>
   <div
     class="header"
+    id="header"
     :style="{
       backgroundColor: theme.themeColor,
     }"
@@ -177,6 +178,14 @@
           </div>
 
           <div class="setting_change">
+            <template v-if="theme.isThemeOpen">
+              <Transition>
+                <div class="theme_box">
+                  <ThemeBox />
+                </div>
+              </Transition>
+            </template>
+
             <n-space justify="start" :size="12">
               <template v-for="(item, i) in data.settings" :key="item">
                 <div>
@@ -184,9 +193,10 @@
                     :iconClass="item.iconName"
                     :iconStyle="data.color"
                     :iconEvent="item.iconEvent"
-                    @click="settingClick(item.iconEvent)"
+                    @click="settingClick(item.iconEvent, i)"
                   />
                 </div>
+
                 <template v-if="i === 2">
                   <n-divider vertical />
                 </template>
@@ -201,8 +211,8 @@
 
 <script setup lang="ts">
 import { useThemeStore } from "@/store/useTheme";
-// import { window } from "@tauri-apps/api";
-// 问题：代码片段中使用了reactive，该代码片段可能是Vue 3的组件代码，后缀类型应该是.vue。但是该代码片段中没有导入Vue或者defineComponent等组件相关的代码，可能还需要在其他文件中导入相关代码才能正常运行。
+import { appWindow } from "@tauri-apps/api/window";
+import ThemeBox from "./ThemeBox.vue";
 type Data = {
   bgColor: string;
   color: string;
@@ -218,6 +228,7 @@ const theme = useThemeStore();
 const data = <Data>reactive({
   bgColor: "#ec4141",
   color: "color:#ffdee8;width:1.3em;height:1.3em",
+
   settings: [
     {
       iconName: "icon-pifuzhuti-xianxing",
@@ -236,7 +247,7 @@ const data = <Data>reactive({
       iconEvent: "windowmini",
     },
     {
-      iconName: "suoxiao1",
+      iconName: "icon-suoxiao1",
       iconEvent: "windowminimax",
     },
     {
@@ -263,7 +274,7 @@ function search_focus() {
 function search_blur() {
   search_val.value === "" ? (isFocus.value = true) : (isFocus.value = false);
 }
-function settingClick(iconEvent: string) {
+function settingClick(iconEvent: string, i: number) {
   if (iconEvent === "openTheme") {
     theme.changeThemeOpen();
   }
@@ -277,13 +288,18 @@ function settingClick(iconEvent: string) {
     // theme.windowmini();
   }
   if (iconEvent === "windowminimax") {
-    // theme.windowminimax();
+    appWindow.minimize();
   }
   if (iconEvent === "windowmax") {
-    // theme.windowmax();
+    appWindow.maximize();
+    data.settings[i].iconEvent = "unmaximize";
   }
   if (iconEvent === "windowclose") {
-    // theme.windowclose();
+    appWindow.close();
+  }
+  if (iconEvent === "unmaximize") {
+    appWindow.unmaximize();
+    data.settings[i].iconEvent = "windowmax";
   }
 }
 </script>
@@ -444,6 +460,14 @@ $white: #f8d8d8;
           display: flex;
           align-items: center;
           margin-left: 18px;
+          position: relative;
+          .theme_box {
+            position: absolute;
+            left: -154px;
+            top: 54px;
+            z-index: 100;
+
+          }
         }
       }
     }
