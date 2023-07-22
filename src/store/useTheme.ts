@@ -3,9 +3,7 @@ import { defineStore } from "pinia";
 export const useThemeStore = defineStore(
   "main",
   () => {
-    type Data = {
-      colors: Colors[];
-    };
+    
 
     type Colors = {
       colorName: string;
