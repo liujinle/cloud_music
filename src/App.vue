@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import layout from "@/layout/index.vue";
+
+import { useThemeStore } from "@/store/useTheme";
+const theme = useThemeStore();
+console.log(theme.themeColor);
+
+
+
+
+
+
+
 </script>
 
 <template>
@@ -8,4 +19,10 @@ import layout from "@/layout/index.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style>
+.n-tabs .n-tabs-bar {
+    background-color: v-bind('theme.themeColor');
+  }
+
+
+</style>

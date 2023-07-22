@@ -11,7 +11,7 @@
             >
           </template>
           <n-grid x-gap="2" y-gap="2" :cols="3">
-            <template v-for="(item, i) in data.colors" :key="item.colorName">
+            <template v-for="(item, i) in theme.colors" :key="item.colorName">
               <n-gi>
                 <div
                   class="theme_color"
@@ -51,53 +51,16 @@
 import { useThemeStore } from "@/store/useTheme";
 type Data = {
   isActive: boolean;
-
-  colors: colors[];
 };
 
-type colors = {
-  colorName: string;
-  color: string;
-  isSelect?: boolean;
-};
+
 
 const theme = useThemeStore();
 
 const data = <Data>reactive({
   isActive: true,
 
-  colors: [
-    {
-      colorName: "酷炫黑",
-      color: "#2a2d33",
-      isSelect: false,
-    },
-    {
-      colorName: "官方红",
-      color: "#cd3835",
-      isSelect: true,
-    },
-    {
-      colorName: "可爱粉",
-      color: "#ed97bb",
-      isSelect: false,
-    },
-    {
-      colorName: "天际蓝",
-      color: "#48b2fd",
-      isSelect: false,
-    },
-    {
-      colorName: "清新绿",
-      color: "#40965b",
-      isSelect: false,
-    },
-    {
-      colorName: "土豪金",
-      color: "#e1b672",
-      isSelect: false,
-    },
-  ],
+  
 });
 
 function spanActive() {
@@ -105,19 +68,15 @@ function spanActive() {
 }
 
 function changeTheme(index: number) {
-  data.colors.forEach((item, i) => {
+  theme.colors.forEach((item, i) => {
     item.isSelect = index === i;
   });
-  theme.changeThemeColor(data.colors[index].color);
+  theme.changeThemeColor(theme.colors[index].color);
 }
 </script>
 
 <style scoped lang="scss">
-:deep() {
-  .n-tabs .n-tabs-bar {
-    background-color: #ec4141;
-  }
-}
+
 
 .bg {
   width: 350px;

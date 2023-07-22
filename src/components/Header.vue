@@ -215,6 +215,7 @@ import { ComponentInternalInstance } from "vue";
 import { useThemeStore } from "@/store/useTheme";
 import { appWindow } from "@tauri-apps/api/window";
 import ThemeBox from "./ThemeBox.vue";
+
 const { proxy } = getCurrentInstance() as ComponentInternalInstance;
 
 type Data = {

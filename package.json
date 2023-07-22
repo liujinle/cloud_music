@@ -10,6 +10,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@overlays/vue": "^0.4.6",
     "@tauri-apps/api": "^1.4.0",
     "axios": "^1.4.0",
     "naive-ui": "^2.34.4",
