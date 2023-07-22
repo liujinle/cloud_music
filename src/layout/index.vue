@@ -9,9 +9,7 @@
           <Sider />
         </n-layout-sider>
         <n-layout-content>
-        <RouterView />  
-        
-        
+          <RouterView />
         </n-layout-content>
       </n-layout>
       <n-layout-footer style="height: 68px">成府路</n-layout-footer>

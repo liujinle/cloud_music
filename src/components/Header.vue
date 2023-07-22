@@ -1,5 +1,6 @@
 <template>
   <div
+    data-tauri-drag-region
     class="header"
     id="header"
     :style="{
@@ -188,7 +189,7 @@
 
             <n-space justify="start" :size="12">
               <template v-for="(item, i) in data.settings" :key="item">
-                <div>
+                <div none-drag-region>
                   <Svgicon
                     :iconClass="item.iconName"
                     :iconStyle="data.color"
@@ -210,9 +211,12 @@
 </template>
 
 <script setup lang="ts">
+import { ComponentInternalInstance } from "vue";
 import { useThemeStore } from "@/store/useTheme";
 import { appWindow } from "@tauri-apps/api/window";
 import ThemeBox from "./ThemeBox.vue";
+const { proxy } = getCurrentInstance() as ComponentInternalInstance;
+
 type Data = {
   bgColor: string;
   color: string;
@@ -302,6 +306,33 @@ function settingClick(iconEvent: string, i: number) {
     data.settings[i].iconEvent = "windowmax";
   }
 }
+
+const loadTree = (
+  parent: { getAttributeNames: () => string | any[]; children: string | any[] },
+  excludeClassNames: string[],
+  callback: { (node: any): void; (arg0: any): void }
+) => {
+  if (parent.getAttributeNames().includes(excludeClassNames[0])) {
+    return;
+  }
+  for (let i = 0; i < parent.children.length; i++) {
+    let child = parent.children[i];
+    loadTree(child, excludeClassNames, callback);
+  }
+  if (callback) {
+    callback(parent);
+  }
+};
+
+onMounted(() => {
+  loadTree(
+    proxy?.$el,
+    ["none-drag-region"],
+    (node: { setAttribute: (arg0: string, arg1: string) => void }) => {
+      node.setAttribute("data-tauri-drag-region", "");
+    }
+  );
+});
 </script>
 
 <style scoped lang="scss">
@@ -309,6 +340,7 @@ $white: #f8d8d8;
 .header {
   width: 100%;
   height: pxS(80);
+  user-select: none;
 
   display: flex;
   justify-content: space-between;
@@ -466,7 +498,6 @@ $white: #f8d8d8;
             left: -154px;
             top: 54px;
             z-index: 100;
-
           }
         }
       }
