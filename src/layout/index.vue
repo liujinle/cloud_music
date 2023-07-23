@@ -9,7 +9,7 @@
           <Sider />
         </n-layout-sider>
         <n-layout-content>
-          <RouterView />
+          <content />
         </n-layout-content>
       </n-layout>
       <n-layout-footer style="height: 68px">成府路</n-layout-footer>
@@ -17,6 +17,9 @@
   </n-space>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import content from "@/views/index.vue";
+
+</script>
 
 <style scoped></style>

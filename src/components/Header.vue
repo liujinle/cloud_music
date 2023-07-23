@@ -132,6 +132,7 @@
             </div>
             <div class="search_box_input">
               <input
+              id="search_btn"
                 type="text"
                 name="search_btn"
                 @focus="search_focus"
@@ -139,7 +140,7 @@
                 v-model="search_val"
               />
 
-              <label class="search_box_label" for="search_btn">搜索</label>
+              <label class="search_box_label" name="search_btn" for="search_btn">搜索</label>
             </div>
           </div>
 

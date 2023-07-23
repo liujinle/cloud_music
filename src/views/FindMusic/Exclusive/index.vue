@@ -1,5 +1,5 @@
 <template>
-  <div>关注</div>
+  <div>这是专属定制</div>
 </template>
 
 <script setup lang="ts"></script>

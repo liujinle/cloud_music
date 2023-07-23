@@ -3,7 +3,6 @@ import layout from "@/layout/index.vue";
 
 import { useThemeStore } from "@/store/useTheme";
 const theme = useThemeStore();
-console.log(theme.themeColor);
 
 
 

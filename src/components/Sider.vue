@@ -64,7 +64,7 @@ const data = <Data>reactive({
     {
       listName: "发现音乐",
       listView: true,
-      path: "/",
+      path: "/findmusic",
     },
     {
       listName: "播客",
