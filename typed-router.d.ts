@@ -40,16 +40,19 @@ import type {
 declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
-    '/FindMusic/': RouteRecordInfo<'/FindMusic/', '/FindMusic', Record<never, never>, Record<never, never>>,
-    '/FindMusic/Exclusive/': RouteRecordInfo<'/FindMusic/Exclusive/', '/FindMusic/Exclusive', Record<never, never>, Record<never, never>>,
-    '/FindMusic/Personal/': RouteRecordInfo<'/FindMusic/Personal/', '/FindMusic/Personal', Record<never, never>, Record<never, never>>,
-    '/Follow/': RouteRecordInfo<'/Follow/', '/Follow', Record<never, never>, Record<never, never>>,
-    '/Live/': RouteRecordInfo<'/Live/', '/Live', Record<never, never>, Record<never, never>>,
-    '/Login/': RouteRecordInfo<'/Login/', '/Login', Record<never, never>, Record<never, never>>,
-    '/Podcast/': RouteRecordInfo<'/Podcast/', '/Podcast', Record<never, never>, Record<never, never>>,
-    '/PrivateLive/': RouteRecordInfo<'/PrivateLive/', '/PrivateLive', Record<never, never>, Record<never, never>>,
-    '/Setting/': RouteRecordInfo<'/Setting/', '/Setting', Record<never, never>, Record<never, never>>,
-    '/Video/': RouteRecordInfo<'/Video/', '/Video', Record<never, never>, Record<never, never>>,
+    '/findmusic': RouteRecordInfo<'/findmusic', '/findmusic', Record<never, never>, Record<never, never>>,
+    '/findmusic/exclusive': RouteRecordInfo<'/findmusic/exclusive', '/findmusic/exclusive', Record<never, never>, Record<never, never>>,
+    '/findmusic/musiclist': RouteRecordInfo<'/findmusic/musiclist', '/findmusic/musiclist', Record<never, never>, Record<never, never>>,
+    '/findmusic/newmusic': RouteRecordInfo<'/findmusic/newmusic', '/findmusic/newmusic', Record<never, never>, Record<never, never>>,
+    '/findmusic/personal': RouteRecordInfo<'/findmusic/personal', '/findmusic/personal', Record<never, never>, Record<never, never>>,
+    '/findmusic/ranklist': RouteRecordInfo<'/findmusic/ranklist', '/findmusic/ranklist', Record<never, never>, Record<never, never>>,
+    '/findmusic/singer': RouteRecordInfo<'/findmusic/singer', '/findmusic/singer', Record<never, never>, Record<never, never>>,
+    '/follow': RouteRecordInfo<'/follow', '/follow', Record<never, never>, Record<never, never>>,
+    '/live': RouteRecordInfo<'/live', '/live', Record<never, never>, Record<never, never>>,
+    '/podcast': RouteRecordInfo<'/podcast', '/podcast', Record<never, never>, Record<never, never>>,
+    '/privatelive': RouteRecordInfo<'/privatelive', '/privatelive', Record<never, never>, Record<never, never>>,
+    '/setting': RouteRecordInfo<'/setting', '/setting', Record<never, never>, Record<never, never>>,
+    '/video': RouteRecordInfo<'/video', '/video', Record<never, never>, Record<never, never>>,
   }
 }
 

@@ -1,28 +1,27 @@
 <template>
   <div class="view_container">
-    <n-card style="margin-bottom: 16px">
+    <!-- <n-card style="margin-bottom: 16px">
       <n-tabs type="line" animated>
         <template v-for="(item, i) in data.titles" :key="item.title">
           <n-tab-pane :name="item.title" :tab="item.path">
             <template v-slot:tab>
-              <span
-                @click="spanIsActive(i)"
-                :class="item.isActive ? 'tab_active tab' : 'tab'"
-              >
-                {{ item.title }}
-              </span>
+              
             </template>
             <component :is="item.path"></component>
           </n-tab-pane>
         </template>
       </n-tabs>
-    </n-card>
+    </n-card> -->
+
+    <tabs :titles="data.titles" />
   </div>
 </template>
 
 <script setup lang="ts">
-import exclusive from "@/views/FindMusic/Exclusive/index.vue";
-import personal from "@/views/FindMusic/Personal/index.vue";
+import { definePage } from "vue-router/auto";
+definePage({
+  redirect: "/findmusic/personal",
+});
 type Data = {
   titles: Titles[];
 };
@@ -30,61 +29,48 @@ type Data = {
 type Titles = {
   title: string;
   isActive: boolean;
-  path: VNode;
+  path: string;
 };
-const data = <Data>(<unknown>shallowReactive({
+const data = <Data>reactive({
   titles: [
     {
       title: "个性推荐",
       isActive: true,
-      path: exclusive,
+      path: "/findmusic/exclusive",
     },
     {
       title: "专属定制",
       isActive: false,
-      path: personal,
+      path: "/findmusic/personal",
     },
     {
       title: "歌单",
       isActive: false,
-      path: exclusive,
+      path: "/findmusic/musiclist",
     },
     {
       title: "排行榜",
       isActive: false,
-      path: exclusive,
+      path: "/findmusic/ranklist",
     },
     {
       title: "歌手",
       isActive: false,
-      path: exclusive,
+      path: "/findmusic/singer",
     },
     {
       title: "最新音乐",
       isActive: false,
-      path: exclusive,
+      path: "/findmusic/newmusic",
     },
   ],
-}));
+});
 
-function spanIsActive(i: number) {
-  data.titles.forEach((item, index) => {
-    item.isActive = index === i;
-  });
-}
+
 </script>
 
 <style scoped lang="scss">
-.tab {
-  font-size: 16px;
-  user-select: none;
-}
 
-.tab_active {
-  font-size: 20px;
-  color: #333333;
-  font-weight: 800;
-}
 
 .view_container {
   user-select: none;

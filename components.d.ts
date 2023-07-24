@@ -12,6 +12,8 @@ declare module 'vue' {
     Modal: typeof import('./src/components/Modal.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
+    NCarousel: typeof import('naive-ui')['NCarousel']
+    NCarouselItem: typeof import('naive-ui')['NCarouselItem']
     NDivider: typeof import('naive-ui')['NDivider']
     NDropdown: typeof import('naive-ui')['NDropdown']
     NGi: typeof import('naive-ui')['NGi']
