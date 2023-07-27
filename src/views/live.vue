@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-button >莫泰显示</n-button>
+    <a-button >莫泰显示</a-button>
     
   </div>
 </template>

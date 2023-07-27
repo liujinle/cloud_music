@@ -7,7 +7,25 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AButton: typeof import('ant-design-vue/es')['Button']
+    ACard: typeof import('ant-design-vue/es')['Card']
+    ACarousel: typeof import('ant-design-vue/es')['Carousel']
+    ACol: typeof import('ant-design-vue/es')['Col']
+    ADivider: typeof import('ant-design-vue/es')['Divider']
+    AGrid: typeof import('ant-design-vue/es')['Grid']
+    AImage: typeof import('ant-design-vue/es')['Image']
+    ALayout: typeof import('ant-design-vue/es')['Layout']
+    ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
+    ALayoutFooter: typeof import('ant-design-vue/es')['LayoutFooter']
+    ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
+    ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
+    ARow: typeof import('ant-design-vue/es')['Row']
+    ASpace: typeof import('ant-design-vue/es')['Space']
+    ATabPane: typeof import('ant-design-vue/es')['TabPane']
+    ATabs: typeof import('ant-design-vue/es')['Tabs']
     CustomizationPage: typeof import('./src/components/CustomizationPage.vue')['default']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     Header: typeof import('./src/components/Header.vue')['default']
     Modal: typeof import('./src/components/Modal.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
@@ -35,6 +53,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Sider: typeof import('./src/components/Sider.vue')['default']
     Svgicon: typeof import('./src/components/Svgicon.vue')['default']
+    Swiper: typeof import('./src/components/Swiper.vue')['default']
     Tabs: typeof import('./src/components/Tabs.vue')['default']
     ThemeBox: typeof import('./src/components/ThemeBox.vue')['default']
   }

@@ -1,26 +1,14 @@
 <template>
   <div class="view_container">
-    <!-- <n-card style="margin-bottom: 16px">
-      <n-tabs type="line" animated>
-        <template v-for="(item, i) in data.titles" :key="item.title">
-          <n-tab-pane :name="item.title" :tab="item.path">
-            <template v-slot:tab>
-              
-            </template>
-            <component :is="item.path"></component>
-          </n-tab-pane>
-        </template>
-      </n-tabs>
-    </n-card> -->
-
     <tabs :titles="data.titles" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { definePage } from "vue-router/auto";
+
 definePage({
-  redirect: "/findmusic/personal",
+  redirect: "/findmusic/exclusive",
 });
 type Data = {
   titles: Titles[];
@@ -31,6 +19,7 @@ type Titles = {
   isActive: boolean;
   path: string;
 };
+
 const data = <Data>reactive({
   titles: [
     {
@@ -66,12 +55,9 @@ const data = <Data>reactive({
   ],
 });
 
-
 </script>
 
 <style scoped lang="scss">
-
-
 .view_container {
   user-select: none;
 }

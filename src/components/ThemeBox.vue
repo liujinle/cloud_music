@@ -1,72 +1,67 @@
 <template>
   <div class="bg">
-    <n-card style="margin-bottom: 16px">
-      <n-tabs type="line" animated>
-        <n-tab-pane name="theme">
-          <template v-slot:tab>
-            <span
-              :class="data.isActive ? 'bg_active bg_tab' : 'bg_tab'"
-              @click="spanActive"
-              >主题</span
+
+    <a-card
+      :tab-list="data.tabList"
+      :active-tab-key="key"
+      @tabChange="key => onTabChange(key, 'key')"
+    >
+      <a-row>
+        <template v-for="(item, i) in theme.colors" :key="item.colorName">
+          <a-col>
+            <div
+              class="theme_color"
+              :style="{ backgroundColor: item.color }"
+              @click="changeTheme(i)"
             >
-          </template>
-          <n-grid x-gap="2" y-gap="2" :cols="3">
-            <template v-for="(item, i) in theme.colors" :key="item.colorName">
-              <n-gi>
-                <div
-                  class="theme_color"
-                  :style="{ backgroundColor: item.color }"
-                  @click="changeTheme(i)"
-                >
-                  <span>{{ item.colorName }}</span>
-                  <div class="theme_select" v-show="item.isSelect">
-                    <Svgicon
-                      icon-class="icon-zhengque"
-                      :icon-style="
-                        'font-size:18px;' + 'color:' + item.color + ';'
-                      "
-                    ></Svgicon>
-                  </div>
-                </div>
-              </n-gi>
-            </template>
-          </n-grid>
-        </n-tab-pane>
-        <n-tab-pane name="color">
-          <template v-slot:tab>
-            <span
-              :class="data.isActive ? 'bg_tab' : 'bg_active bg_tab'"
-              @click="spanActive"
-              >纯色</span
-            >
-          </template>
-          Hey Jude
-        </n-tab-pane>
-      </n-tabs>
-    </n-card>
+              <span>{{ item.colorName }}</span>
+              <div class="theme_select" v-show="item.isSelect">
+                <Svgicon
+                  icon-class="icon-zhengque"
+                  :icon-style="'font-size:18px;' + 'color:' + item.color + ';'"
+                ></Svgicon>
+              </div>
+            </div>
+          </a-col>
+        </template>
+      </a-row>
+    </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useThemeStore } from "@/store/useTheme";
 type Data = {
-  isActive: boolean;
+  tabList: TabList[];
 };
 
+type TabList = {
+  key: string;
+  tab: string;
+};
 
+const key = ref<string>("theme");
 
 const theme = useThemeStore();
 
 const data = <Data>reactive({
-  isActive: true,
-
-  
+  tabList: [
+    {
+      key: "theme",
+      tab: "主题",
+    },
+    {
+      key: "color",
+      tab: "纯色",
+    },
+  ],
 });
 
-function spanActive() {
-  data.isActive = !data.isActive;
+function onTabChange(value: string, type: string) {
+  if (type === "key") {
+    key.value = value;
+  }
 }
-
 function changeTheme(index: number) {
   theme.colors.forEach((item, i) => {
     item.isSelect = index === i;
@@ -76,8 +71,6 @@ function changeTheme(index: number) {
 </script>
 
 <style scoped lang="scss">
-
-
 .bg {
   width: 350px;
   height: 278px;

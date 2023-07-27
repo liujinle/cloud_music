@@ -5,11 +5,6 @@ import { useThemeStore } from "@/store/useTheme";
 const theme = useThemeStore();
 
 
-
-
-
-
-
 </script>
 
 <template>

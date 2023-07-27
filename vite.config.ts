@@ -3,7 +3,10 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
-import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
+import {
+  AntDesignVueResolver,
+
+} from "unplugin-vue-components/resolvers";
 import path from "path";
 import VueRouter from "unplugin-vue-router/vite";
 import { VueRouterAutoImports } from "unplugin-vue-router";
@@ -19,21 +22,16 @@ export default defineConfig(async () => ({
     }),
     vue(),
     components({
-      resolvers: [NaiveUiResolver()],
+      resolvers: [
+        AntDesignVueResolver({
+          importStyle: false,
+        }),
+       
+      ],
     }),
     autoImport({
-      imports: [
-        "vue",
-        {
-          "naive-ui": [
-            "useDialog",
-            "useMessage",
-            "useNotification",
-            "useLoadingBar",
-          ],
-        },
-        VueRouterAutoImports,
-      ],
+      imports: ["vue", VueRouterAutoImports],
+      
     }),
   ],
   css: {
@@ -50,6 +48,13 @@ export default defineConfig(async () => ({
   server: {
     port: 1420,
     strictPort: true,
+    proxy: {
+      "/api": {
+        target: "https://www.cloudmusic.top",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
   // to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand
@@ -67,5 +72,4 @@ export default defineConfig(async () => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  
 }));

@@ -21,6 +21,8 @@
 
 <script setup lang="ts">
 import { useThemeStore } from "@/store/useTheme";
+
+
 type Title = {
   title: string;
   isActive: boolean;
@@ -30,6 +32,7 @@ const props = defineProps<{
   titles: Title[];
 }>();
 
+
 const theme = useThemeStore();
 
 function spanIsActive(i: number) {
@@ -37,6 +40,8 @@ function spanIsActive(i: number) {
     item.isActive = index === i;
   });
 }
+
+
 </script>
 
 <style scoped>

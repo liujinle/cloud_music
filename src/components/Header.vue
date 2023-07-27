@@ -132,7 +132,7 @@
             </div>
             <div class="search_box_input">
               <input
-              id="search_btn"
+                id="search_btn"
                 type="text"
                 name="search_btn"
                 @focus="search_focus"
@@ -140,7 +140,9 @@
                 v-model="search_val"
               />
 
-              <label class="search_box_label" name="search_btn" for="search_btn">搜索</label>
+              <label class="search_box_label" name="search_btn" for="search_btn"
+                >搜索</label
+              >
             </div>
           </div>
 
@@ -161,9 +163,10 @@
         <div class="setting_con">
           <div class="setting_customer">
             <div class="setting_customer_img">
-              <n-image
-                width="25"
+              <a-image
+                :width="25"
                 style="border-radius: 50%"
+                :preview="false"
                 src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
               />
             </div>
@@ -171,9 +174,10 @@
               <span>{{ "未登录" }}</span>
             </div>
             <div class="setting_customer_vip">
-              <n-image
-                width="46"
-                height="16"
+              <a-image
+                :width="46"
+                :height="16"
+                :preview="false"
                 src="/src/assets/img/vip_none.png"
               />
             </div>
@@ -188,7 +192,7 @@
               </Transition>
             </template>
 
-            <n-space justify="start" :size="12">
+            <a-space justify="start" :size="16">
               <template v-for="(item, i) in data.settings" :key="item">
                 <div none-drag-region>
                   <Svgicon
@@ -200,10 +204,10 @@
                 </div>
 
                 <template v-if="i === 2">
-                  <n-divider vertical />
+                  <a-divider type="vertical" />
                 </template>
               </template>
-            </n-space>
+            </a-space>
           </div>
         </div>
       </div>
@@ -339,10 +343,14 @@ onMounted(() => {
 
 <style scoped lang="scss">
 $white: #f8d8d8;
+.ant-divider-vertical {
+ border-color: #ffffff;
+}
+
 .header {
   width: 100%;
-  height: pxS(80);
   user-select: none;
+  height: 64px;
 
   display: flex;
   justify-content: space-between;
@@ -422,7 +430,7 @@ $white: #f8d8d8;
 
             & > .search_box_label {
               position: absolute;
-              top: 0;
+              top: 6px;
               left: 0;
               text-align: center;
               color: #f19f9f;
@@ -474,7 +482,7 @@ $white: #f8d8d8;
             &::after {
               content: "";
               position: absolute;
-              top: 6px;
+              top: -2px;
               right: -14px;
               height: 10px;
               border-top: 5px solid $white;

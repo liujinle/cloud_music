@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "types":["element-plus/global"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -34,4 +35,5 @@
     "typed-router.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
+  
 }

@@ -10,7 +10,7 @@ export const useThemeStore = defineStore(
       color: string;
       isSelect?: boolean;
     };
-    const themeColor = ref("#ec4141");
+    const themeColor = ref<string>("#ec4141");
     const isThemeOpen = ref<boolean>(false);
 
     const colors = ref<Colors[]>([
