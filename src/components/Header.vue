@@ -186,7 +186,7 @@
           <div class="setting_change">
             <template v-if="theme.isThemeOpen">
               <Transition>
-                <div class="theme_box">
+                <div class="theme_box" style="z-index: 999;">
                   <ThemeBox />
                 </div>
               </Transition>

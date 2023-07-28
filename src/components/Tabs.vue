@@ -44,7 +44,7 @@ function spanIsActive(i: number) {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .tab {
   font-size: 16px;
   margin: 10px 10px;

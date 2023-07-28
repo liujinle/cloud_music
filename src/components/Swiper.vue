@@ -11,17 +11,46 @@
             ,
           ]"
           :style="{ backgroundImage: `url(${item.imageUrl})` }"
-        ></div>
+        >
+          <span
+            :style="{
+              backgroundColor: item.typeTitle.includes('歌')
+                ? '#ec4141'
+                : '#4a79cc',
+            }"
+            >{{ item.typeTitle }}</span
+          >
+        </div>
       </template>
+
+      <div
+        class="pre icons"
+        @click="changeActiveIndex('pre', data.banners)"
+      ></div>
+      <div
+        class="nex icons"
+        @click="changeActiveIndex('nex', data.banners)"
+      ></div>
+    </div>
+    <div class="paginations">
+      <div
+        class="pagination"
+        v-for="(item, index) in data.banners"
+        :class="data.activeIndex === index ? 'pagination_active' : ''"
+        :key="item.imageUrl"
+        @mouseenter="paginationEnter(index)"
+      ></div>
     </div>
   </div>
-  <a-button @click="changeActiveIndex('pre',data.banners)">前</a-button>
-  <a-button @click="changeActiveIndex('nex',data.banners)">后</a-button>
 </template>
 
 <script setup lang="ts">
 import { getBanner } from "@/api/index";
 import type { Imgs } from "@/types/index";
+import {useThemeStore} from '@/store/useTheme'
+
+
+const theme = useThemeStore();
 
 const data = reactive({
   banners: [] as Imgs[],
@@ -65,17 +94,90 @@ function changeActiveIndex(type: string, arr: Imgs[]) {
     }
   }
 }
+
+function paginationEnter(index: number) {
+  data.activeIndex = index;
+  data.pre = data.activeIndex - 1;
+  data.nex = data.activeIndex + 1;
+  if (data.activeIndex === 0) {
+    data.pre = data.banners.length - 1;
+  } else if (data.activeIndex === data.banners.length - 1) {
+    data.nex = 0;
+  }
+}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .swiper {
   width: 100%;
   height: 220px;
   padding: 15px 30px;
+  position: relative;
+  .paginations {
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+    left: calc((100% - 160px) / 2);
+    bottom: -10px;
+    width: 160px;
+    height: 15px;
+    .pagination {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background-color: #ffffff;
+    }
+    .pagination_active {
+      background-color: v-bind('theme.themeColor');
+    }
+  }
+
   .swiper_con {
     width: 100%;
     height: 100%;
     position: relative;
+    &:hover {
+      .icons {
+        display: block;
+      }
+    }
+    .icons {
+      display: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: absolute;
+      top: calc(50% - 14px);
+      color: #e5e5e5;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .pre {
+      left: 0;
+      &::after {
+        font-size: 25px;
+        content: "<";
+        position: absolute;
+        left: 4px;
+        top: -6px;
+      }
+    }
+    .nex {
+      right: 0;
+      &::after {
+        font-size: 25px;
+        content: ">";
+        position: absolute;
+        left: 4px;
+        top: -6px;
+      }
+    }
     .swiper_item {
       position: absolute;
       border-radius: 10px;
@@ -86,7 +188,19 @@ function changeActiveIndex(type: string, arr: Imgs[]) {
       height: 100%;
       transition: all 0.5s linear;
       background-size: 100% 100%;
-      /* background-repeat: no-repeat; */
+      span {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 20px;
+        width: 68px;
+        line-height: 20px;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: center;
+        color: #ffffff;
+      }
     }
     .swiper_pre {
       transform: translateX(21%) scale(0.85);
