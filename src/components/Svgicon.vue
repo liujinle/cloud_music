@@ -8,6 +8,7 @@
 const props = defineProps<{
   iconClass: string;
   iconStyle?: string;
+  color?: string;
   iconEvent?:string
 }>();
 
@@ -18,6 +19,7 @@ const props = defineProps<{
 svg {
   cursor: pointer;
   opacity: 0.8;
+  color: v-bind(color);
   &:hover {
     opacity: 1;
   }

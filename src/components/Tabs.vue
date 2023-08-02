@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <div class="tabs">
       <div class="tab" v-for="(item, i) in props.titles" :key="item.title">
         <RouterLink :to="item.path"
@@ -14,14 +14,12 @@
     </div>
 
     <div class="tab_view">
-      <RouterView />
+        <RouterView />
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
 import { useThemeStore } from "@/store/useTheme";
-
 
 type Title = {
   title: string;
@@ -32,7 +30,6 @@ const props = defineProps<{
   titles: Title[];
 }>();
 
-
 const theme = useThemeStore();
 
 function spanIsActive(i: number) {
@@ -40,8 +37,6 @@ function spanIsActive(i: number) {
     item.isActive = index === i;
   });
 }
-
-
 </script>
 
 <style scoped lang="scss">
@@ -79,5 +74,9 @@ function spanIsActive(i: number) {
   padding: 10px 10px;
   justify-content: start;
   align-items: center;
+}
+
+.tab_view {
+  width: 100%;
 }
 </style>

@@ -186,7 +186,7 @@
           <div class="setting_change">
             <template v-if="theme.isThemeOpen">
               <Transition>
-                <div class="theme_box" style="z-index: 999;">
+                <div class="theme_box" style="z-index: 999">
                   <ThemeBox />
                 </div>
               </Transition>
@@ -343,14 +343,17 @@ onMounted(() => {
 
 <style scoped lang="scss">
 $white: #f8d8d8;
+:deep(.ant-image-img) {
+  vertical-align: top !important;
+}
 .ant-divider-vertical {
- border-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .header {
   width: 100%;
   user-select: none;
-  height: 64px;
+  height: 54px;
 
   display: flex;
   justify-content: space-between;
@@ -430,7 +433,7 @@ $white: #f8d8d8;
 
             & > .search_box_label {
               position: absolute;
-              top: 6px;
+              top: 2px;
               left: 0;
               text-align: center;
               color: #f19f9f;
@@ -482,7 +485,7 @@ $white: #f8d8d8;
             &::after {
               content: "";
               position: absolute;
-              top: -2px;
+              top: 6px;
               right: -14px;
               height: 10px;
               border-top: 5px solid $white;

@@ -60,5 +60,6 @@ const data = <Data>reactive({
 <style scoped lang="scss">
 .view_container {
   user-select: none;
+ 
 }
 </style>

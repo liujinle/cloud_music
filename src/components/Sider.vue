@@ -107,6 +107,7 @@ function changeView(index: number) {
   font-weight: 600;
 }
 .list {
+  width: 160px;
   border-right: 1px solid #e0e0e0;
   cursor: pointer;
   padding: 0 2px 0 20px;

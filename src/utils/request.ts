@@ -34,7 +34,7 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code } = response.data;
     if (code === 200) {
-      return response.data;
+      return response.data ;
     } else {
       message.error("请求失败");
       return Promise.reject(new Error());

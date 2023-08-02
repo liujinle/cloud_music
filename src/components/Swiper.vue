@@ -61,8 +61,26 @@ const data = reactive({
 
 onMounted(async () => {
   const { banners } = await getBanner();
-
   data.banners = banners;
+
+setInterval(() => {
+  data.activeIndex++;
+  data.pre = data.activeIndex - 1;
+  data.nex = data.activeIndex + 1;
+  if (data.activeIndex > data.banners.length - 1) {
+    data.activeIndex = 0;
+    data.pre = data.activeIndex - 1;
+    data.nex = data.activeIndex + 1;
+  } else if (data.activeIndex === data.banners.length - 1) {
+    data.nex = 0;
+    data.pre = data.activeIndex - 1;
+  }
+}, 2000);
+
+
+
+
+
 });
 
 function changeActiveIndex(type: string, arr: Imgs[]) {
@@ -111,7 +129,7 @@ function paginationEnter(index: number) {
 .swiper {
   width: 100%;
   height: 220px;
-  padding: 15px 30px;
+  padding: 15px 0;
   position: relative;
   .paginations {
     display: flex;
@@ -127,7 +145,7 @@ function paginationEnter(index: number) {
       height: 8px;
       margin-right: 8px;
       border-radius: 50%;
-      background-color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.3);
     }
     .pagination_active {
       background-color: v-bind('theme.themeColor');
@@ -165,7 +183,7 @@ function paginationEnter(index: number) {
         content: "<";
         position: absolute;
         left: 4px;
-        top: -6px;
+        top: 0px;
       }
     }
     .nex {
@@ -175,7 +193,7 @@ function paginationEnter(index: number) {
         content: ">";
         position: absolute;
         left: 4px;
-        top: -6px;
+        top: 0px;
       }
     }
     .swiper_item {
