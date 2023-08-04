@@ -73,3 +73,7 @@ export default defineConfig(async () => ({
     },
   },
 }));
+function myOwnGenerateRouteName(routeNode: T): string {
+  throw new Error("Function not implemented.");
+}
+

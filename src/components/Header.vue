@@ -114,7 +114,7 @@
 
       <div class="search">
         <div class="search_history">
-          <div class="icons">
+          <div class="icons" @click="historyEvent('back')">
             <Svgicon iconClass="icon-houtui1" :iconStyle="colorChange.color" />
           </div>
           <div class="icons">
@@ -329,6 +329,17 @@ const loadTree = (
     callback(parent);
   }
 };
+
+function historyEvent(type: string) {
+  if (type === "back") {
+    console.log(111);
+
+    window.history.back();
+  }
+  if (type === "go") {
+    window.history.forward();
+  }
+}
 
 onMounted(() => {
   loadTree(

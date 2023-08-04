@@ -15,11 +15,13 @@
             <Svgicon :iconClass="'icon-bofang'" :color="'#ec4141'" />
           </div>
         </div>
-        <div class="musiclist-item-info">{{ item.name }}</div>
+        <div class="musiclist-item-info">
+          <span @click="routeLink(item.id)" style="cursor: pointer;">{{ item.name }}</span>
+        </div>
 
         <div class="musiclist-item-play">
           <Svgicon :iconClass="'icon-24gl-play'" :color="'#ffffff'" />
-          <span>
+          <span style="cursor: pointer">
             {{ changeNumber(item.playCount) }}
           </span>
         </div>
@@ -29,7 +31,7 @@
     <ListWithTitle title="热门播客">
       <div class="hotblock">
         <div class="hotblock-img">
-          <a-image/>
+          <a-image />
         </div>
         <div class="hotblock-info"></div>
       </div>
@@ -40,6 +42,7 @@
 <script setup lang="ts">
 import type { Exclusive } from "@/types/index";
 import { getExclusive } from "@/api";
+const router = useRouter();
 const data = reactive({
   exclusive: [] as Exclusive[],
 });
@@ -56,6 +59,15 @@ function changeNumber(num: number) {
   } else {
     return Math.trunc(num / 100000) + "万";
   }
+}
+
+function routeLink(id: number) {
+  router.push({
+    path: "/songlist",
+    query: {
+      id,
+    },
+  });
 }
 </script>
 
@@ -111,8 +123,7 @@ function changeNumber(num: number) {
       }
     }
   }
-  .hotblock{
-
+  .hotblock {
   }
 }
 </style>

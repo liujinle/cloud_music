@@ -9,10 +9,8 @@ const props = defineProps<{
   iconClass: string;
   iconStyle?: string;
   color?: string;
-  iconEvent?:string
+  iconEvent?: string;
 }>();
-
-
 </script>
 
 <style scoped lang="scss">

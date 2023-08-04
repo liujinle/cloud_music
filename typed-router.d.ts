@@ -52,6 +52,7 @@ declare module 'vue-router/auto/routes' {
     '/podcast': RouteRecordInfo<'/podcast', '/podcast', Record<never, never>, Record<never, never>>,
     '/privatelive': RouteRecordInfo<'/privatelive', '/privatelive', Record<never, never>, Record<never, never>>,
     '/setting': RouteRecordInfo<'/setting', '/setting', Record<never, never>, Record<never, never>>,
+    '/songlist': RouteRecordInfo<'/songlist', '/songlist', Record<never, never>, Record<never, never>>,
     '/video': RouteRecordInfo<'/video', '/video', Record<never, never>, Record<never, never>>,
   }
 }
