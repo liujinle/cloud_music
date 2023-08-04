@@ -40,11 +40,23 @@
 
             <div class="favorites btn">
               <Svgicon icon-class="icon-shoucang" />
-              <span>收藏(571)</span>
+              <span
+                >收藏({{
+                  data.playlist.subscribedCount > 10000
+                    ? Math.trunc(data.playlist.subscribedCount / 10000) + "万"
+                    : data.playlist.subscribedCount
+                }})</span
+              >
             </div>
             <div class="share btn">
               <Svgicon icon-class="icon-fabudaochuzhuomiankuaijie" />
-              <span>分享(4)</span>
+              <span
+                >分享({{
+                  data.playlist.shareCount > 10000
+                    ? Math.trunc(data.playlist.shareCount / 10000) + "万"
+                    : data.playlist.shareCount
+                }})</span
+              >
             </div>
             <div class="download btn">
               <Svgicon icon-class="icon-xiazai" />
@@ -56,9 +68,13 @@
           <p>
             标签：<a-tag v-for="tag in data.playlist.tags">{{ tag }}</a-tag>
           </p>
-          <p style="margin: 5px 0;">
-            <span style="margin-right: 5px;">歌曲:{{ data.playlist.tracks.length + 1 }}</span>
-            <span>播放:{{Math.trunc(data.playlist.playCount/10000)}}万</span>
+          <p style="margin: 5px 0">
+            <span style="margin-right: 5px"
+              >歌曲：{{ data.playlist.tracks.length }}</span
+            >
+            <span
+              >播放：{{ Math.trunc(data.playlist.playCount / 10000) }}万</span
+            >
           </p>
           <p
             style="
@@ -74,6 +90,9 @@
         </div>
       </div>
     </div>
+    <div class="list-container"></div>
+
+    <SongListBox />
   </div>
 </template>
 
@@ -85,7 +104,10 @@ const route = useRoute();
 const data = reactive({
   playlist: {} as any,
 });
-
+provide(
+  "tracks",
+  computed(() => data.playlist.tracks)
+);
 onMounted(async () => {
   const { playlist } = await getSongListDetail(route.query.id as any);
   data.playlist = playlist;
@@ -97,10 +119,11 @@ onMounted(async () => {
 .song-list {
   width: 820px;
   height: calc(100vh - 128px);
+  overflow-y: scroll;
   .song-info {
     padding: 30px 20px;
-    background-color: yellow;
     display: flex;
+    align-items: center;
 
     .song-info-left {
       margin-right: 16px;
@@ -135,7 +158,7 @@ onMounted(async () => {
         margin: 8px 0;
         display: flex;
         .btn {
-          padding: 8px 16px;
+          padding: 8px 12px;
           border-radius: 20px;
           display: flex;
           align-items: center;
