@@ -1,4 +1,3 @@
-import { PluginDescriptor } from "./node_modules/@vue/devtools-api/lib/esm/plugin.d";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import components from "unplugin-vue-components/vite";
@@ -10,8 +9,10 @@ import {
 import path from "path";
 import VueRouter from "unplugin-vue-router/vite";
 import { VueRouterAutoImports } from "unplugin-vue-router";
+import UnoCSS from 'unocss/vite'
 export default defineConfig(async () => ({
   plugins: [
+    UnoCSS(),
     VueRouter({
       routesFolder: "src/views",
       extensions: [".vue"],
@@ -73,7 +74,5 @@ export default defineConfig(async () => ({
     },
   },
 }));
-function myOwnGenerateRouteName(routeNode: T): string {
-  throw new Error("Function not implemented.");
-}
+
 

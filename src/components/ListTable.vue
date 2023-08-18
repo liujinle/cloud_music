@@ -13,7 +13,6 @@
 import * as dayjs from "dayjs";
 const tracks: any = inject("tracks");
 
-console.log(tracks.value);
 
 const tableData = ref<
   {

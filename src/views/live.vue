@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-button >莫泰显示</a-button>
+   <button >点击</button>
     
   </div>
 </template>

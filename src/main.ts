@@ -5,7 +5,7 @@ import { createRouter, createWebHistory } from "vue-router/auto";
 import "@/assets/icons/iconfont/iconfont";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-
+import 'virtual:uno.css'
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 const router = createRouter({

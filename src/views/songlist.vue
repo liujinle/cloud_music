@@ -90,9 +90,9 @@
         </div>
       </div>
     </div>
-    <div class="list-container"></div>
+    <div class="list-container"> <SongListBox /></div>
 
-    <SongListBox />
+   
   </div>
 </template>
 
@@ -181,6 +181,9 @@ onMounted(async () => {
         }
       }
     }
+  }
+  .list-container{
+    padding: 8px 8px;
   }
 }
 </style>

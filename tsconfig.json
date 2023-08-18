@@ -9,10 +9,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types":["element-plus/global"],
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    /* node mode */
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -35,5 +34,4 @@
     "typed-router.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
-  
 }
