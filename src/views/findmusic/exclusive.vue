@@ -1,32 +1,39 @@
 <template>
   <div class="exclusive">
     <Swiper />
+    
+      <ListWithTitle title="推荐歌单">
+        <a-skeleton active :loading="data.loading">
+        <div class="musiclist-item" v-for="item in data.exclusive">
+          <div class="musiclist-item-img">
+            <a-image
+              height="130"
+              width="130"
+              :preview="false"
+              :src="item.picUrl"
+            />
+            <div class="musiclist-item-play-btn">
+              <Svgicon :iconClass="'icon-bofang'" :color="'#ec4141'" />
+            </div>
+          </div>
+          <div class="musiclist-item-info">
+            <span
+              @click="routeLink(item.id)"
+              hover:text-blue-500
+              style="cursor: pointer"
+              >{{ item.name }}</span
+            >
+          </div>
 
-    <ListWithTitle title="推荐歌单">
-      <div class="musiclist-item" v-for="item in data.exclusive">
-        <div class="musiclist-item-img">
-          <a-image
-            height="130"
-            width="130"
-            :preview="false"
-            :src="item.picUrl"
-          />
-          <div class="musiclist-item-play-btn">
-            <Svgicon :iconClass="'icon-bofang'" :color="'#ec4141'" />
+          <div class="musiclist-item-play">
+            <Svgicon :iconClass="'icon-24gl-play'" :color="'#ffffff'" />
+            <span style="cursor: pointer">
+              {{ changeNumber(item.playCount) }}
+            </span>
           </div>
         </div>
-        <div class="musiclist-item-info">
-          <span @click="routeLink(item.id)" style="cursor: pointer;">{{ item.name }}</span>
-        </div>
-
-        <div class="musiclist-item-play">
-          <Svgicon :iconClass="'icon-24gl-play'" :color="'#ffffff'" />
-          <span style="cursor: pointer">
-            {{ changeNumber(item.playCount) }}
-          </span>
-        </div>
-      </div>
-    </ListWithTitle>
+      </a-skeleton>
+      </ListWithTitle>
 
     <ListWithTitle title="热门播客">
       <div class="hotblock">
@@ -45,12 +52,14 @@ import { getExclusive } from "@/api";
 const router = useRouter();
 const data = reactive({
   exclusive: [] as Exclusive[],
+  loading: true as boolean,
 });
 
 onMounted(async () => {
   const { result } = await getExclusive();
 
   data.exclusive = result;
+  data.loading = false;
 });
 
 function changeNumber(num: number) {
@@ -122,8 +131,6 @@ function routeLink(id: number) {
         margin-left: 2px;
       }
     }
-  }
-  .hotblock {
   }
 }
 </style>

@@ -8,8 +8,7 @@
             :class="item.isActive ? 'tab_active tab_s ' : 'tab'"
           >
             {{ item.title }}
-          </span></RouterLink
-        >
+          </span></RouterLink>
       </div>
     </div>
 

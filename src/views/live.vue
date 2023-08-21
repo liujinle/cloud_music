@@ -1,7 +1,6 @@
 <template>
   <div>
-   <button >点击</button>
-    
+<button>测试</button>    
   </div>
 </template>
 

@@ -14,6 +14,7 @@ declare module 'vue' {
     ADivider: typeof import('ant-design-vue/es')['Divider']
     AImage: typeof import('ant-design-vue/es')['Image']
     ARow: typeof import('ant-design-vue/es')['Row']
+    ASkeleton: typeof import('ant-design-vue/es')['Skeleton']
     ASlider: typeof import('ant-design-vue/es')['Slider']
     ASpace: typeof import('ant-design-vue/es')['Space']
     ASpin: typeof import('ant-design-vue/es')['Spin']

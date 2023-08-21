@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const usePlay = defineStore("main", () => {
+export const usePlay = defineStore("play", () => {
 
 
 

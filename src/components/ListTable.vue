@@ -6,13 +6,17 @@
     :bordered="false"
     :pagination="false"
   >
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'title'">
+        <span hover:op-80 cursor-pointer >{{ record.title }}</span>
+      </template>
+    </template>
   </a-table>
 </template>
 
 <script setup lang="ts">
 import * as dayjs from "dayjs";
 const tracks: any = inject("tracks");
-
 
 const tableData = ref<
   {
@@ -59,10 +63,8 @@ const columns = [
 ];
 </script>
 
-<style >
-.table-striped{
-    background-color: rgba(0, 0, 0, 0.1);
+<style>
+.table-striped {
+  background-color: rgba(0, 0, 0, 0.1);
 }
-
-
 </style>
