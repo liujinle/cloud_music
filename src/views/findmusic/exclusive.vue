@@ -1,9 +1,10 @@
 <template>
   <div class="exclusive">
-    <Swiper />
-    
+    <a-spin :spinning="data.loading" tip="加载中...">
+      <Swiper v-if="!data.loading" :banners="data.banners" />
+    </a-spin>
+    <a-spin :spinning="data.loading" tip="加载中...">
       <ListWithTitle title="推荐歌单">
-        <a-skeleton active :loading="data.loading">
         <div class="musiclist-item" v-for="item in data.exclusive">
           <div class="musiclist-item-img">
             <a-image
@@ -32,8 +33,8 @@
             </span>
           </div>
         </div>
-      </a-skeleton>
       </ListWithTitle>
+    </a-spin>
 
     <ListWithTitle title="热门播客">
       <div class="hotblock">
@@ -48,14 +49,19 @@
 
 <script setup lang="ts">
 import type { Exclusive } from "@/types/index";
-import { getExclusive } from "@/api";
+import type { Imgs } from "@/types/index";
+import { getExclusive, getBanner } from "@/api";
 const router = useRouter();
 const data = reactive({
   exclusive: [] as Exclusive[],
+  banners: [] as Imgs[],
+
   loading: true as boolean,
 });
 
 onMounted(async () => {
+  const { banners } = await getBanner();
+  data.banners = banners;
   const { result } = await getExclusive();
 
   data.exclusive = result;

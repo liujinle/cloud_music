@@ -1,7 +1,7 @@
 <template>
   <div class="swiper">
     <div class="swiper_con">
-      <template v-for="(item, index) in data.banners" :key="item">
+      <template v-for="(item, index) in props.banners" :key="item">
         <div
           :class="[
             'swiper_item',
@@ -25,17 +25,17 @@
 
       <div
         class="pre icons"
-        @click="changeActiveIndex('pre', data.banners)"
+        @click="changeActiveIndex('pre', props.banners)"
       ></div>
       <div
         class="nex icons"
-        @click="changeActiveIndex('nex', data.banners)"
+        @click="changeActiveIndex('nex', props.banners)"
       ></div>
     </div>
     <div class="paginations">
       <div
         class="pagination"
-        v-for="(item, index) in data.banners"
+        v-for="(item, index) in props.banners"
         :class="data.activeIndex === index ? 'pagination_active' : ''"
         :key="item.imageUrl"
         @mouseenter="paginationEnter(index)"
@@ -45,42 +45,33 @@
 </template>
 
 <script setup lang="ts">
-import { getBanner } from "@/api/index";
+import { useThemeStore } from "@/store/useTheme";
 import type { Imgs } from "@/types/index";
-import {useThemeStore} from '@/store/useTheme'
-
 
 const theme = useThemeStore();
 
 const data = reactive({
-  banners: [] as Imgs[],
   activeIndex: 0,
   pre: 5,
   nex: 1,
 });
 
-onMounted(async () => {
-  const { banners } = await getBanner();
-  data.banners = banners;
+const props = defineProps(["banners"]);
 
-setInterval(() => {
-  data.activeIndex++;
-  data.pre = data.activeIndex - 1;
-  data.nex = data.activeIndex + 1;
-  if (data.activeIndex > data.banners.length - 1) {
-    data.activeIndex = 0;
+onMounted(async () => {
+  setInterval(() => {
+    data.activeIndex++;
     data.pre = data.activeIndex - 1;
     data.nex = data.activeIndex + 1;
-  } else if (data.activeIndex === data.banners.length - 1) {
-    data.nex = 0;
-    data.pre = data.activeIndex - 1;
-  }
-}, 2000);
-
-
-
-
-
+    if (data.activeIndex > props.banners.length - 1) {
+      data.activeIndex = 0;
+      data.pre = data.activeIndex - 1;
+      data.nex = data.activeIndex + 1;
+    } else if (data.activeIndex === props.banners.length - 1) {
+      data.nex = 0;
+      data.pre = data.activeIndex - 1;
+    }
+  }, 2000);
 });
 
 function changeActiveIndex(type: string, arr: Imgs[]) {
@@ -118,8 +109,8 @@ function paginationEnter(index: number) {
   data.pre = data.activeIndex - 1;
   data.nex = data.activeIndex + 1;
   if (data.activeIndex === 0) {
-    data.pre = data.banners.length - 1;
-  } else if (data.activeIndex === data.banners.length - 1) {
+    data.pre = props.banners.length - 1;
+  } else if (data.activeIndex === props.banners.length - 1) {
     data.nex = 0;
   }
 }
@@ -148,7 +139,7 @@ function paginationEnter(index: number) {
       background-color: rgba(0, 0, 0, 0.3);
     }
     .pagination_active {
-      background-color: v-bind('theme.themeColor');
+      background-color: v-bind("theme.themeColor");
     }
   }
 
